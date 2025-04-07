@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const SHEETDB_API = import.meta.env.VITE_REACT_APP_SHEETDB_API || "";
+const SHEETDB_API = "https://sheetdb.io/api/v1/98f0y05afot17";
+
 
 if (!SHEETDB_API) {
   console.error("⚠️ SHEETDB_API is not set. Check your Vercel env variables.");
