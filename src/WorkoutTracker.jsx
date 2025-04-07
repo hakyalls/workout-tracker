@@ -70,7 +70,7 @@ export default function WorkoutTracker() {
   return (
     <div className="p-4 grid gap-4">
       {program.map((exercise, i) => {
-        const key = \`\${exercise.Exercise}-\${i}\`;
+        const key = `${exercise.Exercise}-${i}`;
         const log = workoutData[key] || {};
 
         return (
