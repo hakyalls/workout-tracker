@@ -38,18 +38,36 @@ export default function WorkoutTracker() {
     }));
   };
 
-  const handleSave = async () => {
-    const entries = Object.entries(workoutData).map(([key, data], i) => {
-      const [exercise] = key.split("-");
-      return {
-        Date: new Date().toISOString().split('T')[0],
-        Exercise: exercise,
-        Set: i + 1,
-        Weight: data.weight,
-        Reps: data.reps,
-        Notes: data.notes || '',
-      };
+const handleSave = async () => {
+  const entries = Object.entries(workoutData).map(([key, data], i) => {
+    const exerciseName = key.split("-")[0]; // get exercise name
+    return {
+      Date: new Date().toISOString().split('T')[0],
+      Exercise: exerciseName,
+      Set: i + 1,
+      Weight: data.weight || "",
+      Reps: data.reps || "",
+      Notes: data.notes || "",
+    };
+  });
+
+  try {
+    const response = await fetch(`${SHEETDB_API}?sheet=WorkoutLog`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: entries }),
     });
+
+    if (response.ok) {
+      alert("Workout saved successfully!");
+    } else {
+      alert("Failed to save workout.");
+    }
+  } catch (err) {
+    console.error("Error saving workout:", err);
+    alert("Error saving workout.");
+  }
+};
 
     try {
       const response = await fetch(SHEETDB_API, {
