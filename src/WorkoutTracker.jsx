@@ -14,7 +14,7 @@ export default function WorkoutTracker() {
     const fetchProgram = async () => {
       const today = new Date().toISOString().split("T")[0];
       try {
-        const res = await fetch(`${SHEETDB_API}?sheet=Program`);
+        const res = await fetch('${SHEETDB_API}?sheet=Program');
         const json = await res.json();
         const todaysProgram = json.filter(row => row.Date === today);
         setProgram(todaysProgram);
@@ -70,7 +70,7 @@ export default function WorkoutTracker() {
   return (
     <div className="p-4 grid gap-4">
       {program.map((exercise, i) => {
-        const key = `${exercise.Exercise}-${i}`;
+        const key = '${exercise.Exercise}-${i}';
         const log = workoutData[key] || {};
 
         return (
