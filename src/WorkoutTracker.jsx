@@ -20,9 +20,33 @@ export default function WorkoutTracker() {
     }));
   };
 
-  const handleSave = () => {
-    console.log("Saving workout data:", workoutData);
-  };
+const handleSave = async () => {
+  const entries = Object.entries(workoutData).map(([exercise, data], i) => ({
+    Date: new Date().toISOString().split('T')[0],
+    Exercise: exercise,
+    Set: i + 1,
+    Weight: data.weight,
+    Reps: data.reps,
+    Notes: data.notes || '',
+  }));
+
+  try {
+    const response = await fetch(import.meta.env.VITE_REACT_APP_SHEETDB_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: entries }),
+    });
+
+    if (response.ok) {
+      alert('Workout saved!');
+    } else {
+      alert('Failed to save workout.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Error saving workout.');
+  }
+};
 
   return (
     <div className="p-4 grid gap-4">
