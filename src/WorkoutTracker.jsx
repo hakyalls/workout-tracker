@@ -38,53 +38,35 @@ export default function WorkoutTracker() {
     }));
   };
 
-const handleSave = async () => {
-  const entries = Object.entries(workoutData).map(([key, data], i) => {
-    const exerciseName = key.split("-")[0]; // get exercise name
-    return {
+  const handleSave = async () => {
+    const entries = Object.entries(workoutData).map(([key, data], i) => {
+      const exerciseName = key.split("-")[0]; // get exercise name
+      return {
       Date: new Date().toISOString().split('T')[0],
       Exercise: exerciseName,
       Set: i + 1,
       Weight: data.weight || "",
       Reps: data.reps || "",
       Notes: data.notes || "",
-    };
-  });
-
-  try {
-    const response = await fetch(`${SHEETDB_API}?sheet=WorkoutLog`, {
+      };
+    });
+  
+    try {
+      const response = await fetch(`${SHEETDB_API}?sheet=WorkoutLog`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: entries }),
-    });
-
-    if (response.ok) {
-      alert("Workout saved successfully!");
-    } else {
+      });
+  
+      if (response.ok) {
+        alert("Workout saved successfully!");
+      } else {
       alert("Failed to save workout.");
     }
   } catch (err) {
     console.error("Error saving workout:", err);
     alert("Error saving workout.");
   }
-};
-
-    try {
-      const response = await fetch(SHEETDB_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: entries }),
-      });
-
-      if (response.ok) {
-        alert("Workout saved!");
-      } else {
-        alert("Failed to save workout.");
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Error saving workout.");
-    }
   };
 
   return (
