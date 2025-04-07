@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 const SHEETDB_API = import.meta.env.VITE_REACT_APP_SHEETDB_API || "";
 
+if (!SHEETDB_API) {
+  console.error("⚠️ SHEETDB_API is not set. Check your Vercel env variables.");
+}
 
 export default function WorkoutTracker() {
   const [program, setProgram] = useState([]);
