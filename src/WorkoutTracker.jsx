@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const SHEETDB_API = import.meta.env.VITE_REACT_APP_SHEETDB_API;
+const SHEETDB_API = import.meta.env.VITE_REACT_APP_SHEETDB_API || "";
+
 
 export default function WorkoutTracker() {
   const [program, setProgram] = useState([]);
