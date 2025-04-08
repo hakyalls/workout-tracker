@@ -85,7 +85,11 @@ export default function WorkoutTracker() {
 
           return (
             <div key={key} className="bg-white p-4 rounded-2xl shadow">
-              <h2 className="text-xl font-bold mb-2">{exercise.Exercise}</h2>
+              
+    <p className="text-sm text-blue-600 mb-1">{exercise.ProgramName}</p>
+    <h2 className="text-xl font-bold mb-1">{exercise.Exercise}</h2>
+    <p className="text-sm text-gray-500 mb-2">{exercise.Focus}</p>
+    
               <p className="text-sm mb-1">
                 Last: {exercise.LastWeight} lbs × {exercise.LastReps} reps
               </p>
