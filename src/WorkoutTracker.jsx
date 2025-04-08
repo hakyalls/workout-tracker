@@ -80,12 +80,13 @@ export default function WorkoutTracker() {
               Last: {exercise.LastWeight} lbs × {exercise.LastReps} reps
             </p>
             <p className="text-sm mb-2 text-gray-500">
-              Programmed: {exercise.Set} Sets × {exercise.Reps} Reps
+              Programmed: {exercise.Set} sets × {exercise.Reps} reps
             </p>
-        
-            <p className="text-sm mb-2 text-gray-500">
-              Notes: {exercise.Notes} 
-            </p>
+            {exercise.Notes && (
+              <p className="text-sm italic text-gray-600 mb-2">
+                Notes: {exercise.Notes}
+              </p>
+            )}
             <div className="flex gap-2 items-center mb-2">
               <input
                 className="border p-2 rounded w-1/3"
