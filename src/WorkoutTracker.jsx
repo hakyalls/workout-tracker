@@ -82,8 +82,7 @@ export default function WorkoutTracker() {
             <p className="text-sm mb-2 text-gray-500">
               Programmed: {exercise.Set} Sets × {exercise.Reps} Reps
             </p>
-            
-            </p>
+        
             <p className="text-sm mb-2 text-gray-500">
               Notes: {exercise.Notes} 
             </p>
